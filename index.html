@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NestFund Family Finance</title>
+  <meta name="description" content="Plan incomes, expenses, debts, and investments together. Teach kids about money and keep your family's finances organized and growing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center justify-center whitespace-nowrap bg-[#FF6A3D] text-white px-5 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-[#f35f32] active:bg-[#e25429] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#FF6A3D]; }
+      .btn-secondary { @apply inline-flex items-center justify-center whitespace-nowrap bg-white text-[#132238] px-5 py-3 rounded-full font-medium ring-1 ring-black/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1BAFBF]; }
+      .nav-link { @apply text-sm font-medium text-[#132238]/70 hover:text-[#132238] transition-colors duration-300; }
+      .badge { @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#E6FAFB] text-[#137B84] ring-1 ring-black/5; }
+      .card { @apply bg-white rounded-2xl shadow-sm ring-1 ring-black/5 p-6 hover:shadow-md transition-all duration-300; }
+      .feature-icon { @apply w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-md; }
+      .muted { @apply text-[#132238]/70; }
+      .headline { @apply font-sans text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-[#132238]; }
+      .subhead { @apply text-lg sm:text-xl text-[#132238]/80; }
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFF] text-[#132238] min-h-screen antialiased">
+  <header class="relative z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
+      <a href="#" class="flex items-center gap-3">
+        <img src="assets/logo.svg" alt="NestFund logo" class="w-9 h-9">
+        <span class="font-heading font-bold text-xl tracking-tight">NestFund</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#invest" class="nav-link">Investing</a>
+        <a href="app.html" class="btn-primary ml-2">Open the App</a>
+      </div>
+      <div class="md:hidden">
+        <a href="app.html" class="btn-primary">Open the App</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero with diagonal composition -->
+    <section class="relative overflow-hidden pt-8">
+      <!-- angled background layers -->
+      <div aria-hidden="true" class="absolute inset-0 -z-10">
+        <div class="skew-hero bg-[#E6FAFB]"></div>
+        <div class="skew-accent bg-[#1BAFBF]/10"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="relative">
+          <div class="max-w-2xl md:max-w-3xl lg:max-w-4xl">
+            <span class="badge mb-5">Family-first money management</span>
+            <h1 class="headline font-heading">All your family finances, planned together beautifully</h1>
+            <p class="subhead mt-4 max-w-2xl">Track incomes, expenses, debts, and investments in one place. Learn bookkeeping, guide your kids, and grow your nest with confident monthly planning.</p>
+            <div class="mt-8 flex items-center gap-4">
+              <a href="app.html" class="btn-primary">Start Planning</a>
+              <a href="#features" class="btn-secondary">Explore Features</a>
+            </div>
+          </div>
+
+          <!-- angled teaser card -->
+          <div class="mt-14 grid gap-6 md:grid-cols-3">
+            <div class="card relative">
+              <div class="feature-icon bg-[#1BAFBF]">💠</div>
+              <h3 class="mt-4 font-heading text-xl">Smart Monthly Plan</h3>
+              <p class="muted mt-2">Bring incomes and spending together to see what is safe to save and invest every month.</p>
+            </div>
+            <div class="card relative">
+              <div class="feature-icon bg-[#FF6A3D]">📊</div>
+              <h3 class="mt-4 font-heading text-xl">Debt Strategy</h3>
+              <p class="muted mt-2">Track what you owe, see total interest, and get a payoff priority you can follow.</p>
+            </div>
+            <div class="card relative">
+              <div class="feature-icon bg-[#132238]">🎓</div>
+              <h3 class="mt-4 font-heading text-xl">Teach Your Kids</h3>
+              <p class="muted mt-2">Kid-friendly money lessons with progress tracking and simple activities.</p>
+            </div>
+          </div>
+
+          <!-- tilt showcase -->
+          <div class="relative mt-16 md:mt-24">
+            <div class="showcase-tilt ring-1 ring-black/5 shadow-xl bg-white rounded-3xl p-6 md:p-8">
+              <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <div class="flex-1">
+                  <h4 class="font-heading text-2xl">Plan a month in seconds</h4>
+                  <p class="muted mt-2">Choose a month and NestFund suggests how to allocate savings, debt payoff, and stable investments like S&P funds and real estate ETFs.</p>
+                  <ul class="mt-4 space-y-2 text-sm">
+                    <li class="flex items-center gap-2"><span class="badge">Step 1</span><span>Enter incomes and bills</span></li>
+                    <li class="flex items-center gap-2"><span class="badge">Step 2</span><span>Add variable spending as you go</span></li>
+                    <li class="flex items-center gap-2"><span class="badge">Step 3</span><span>Apply the monthly suggestion</span></li>
+                  </ul>
+                  <a href="app.html" class="btn-primary mt-6">Try the Planner</a>
+                </div>
+                <div class="flex-1 w-full">
+                  <div class="demo-panel p-5 rounded-2xl bg-[#F8FAFF] ring-1 ring-black/5">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-sm muted">Suggested monthly split</p>
+                        <p class="font-heading text-2xl mt-1">60% needs · 20% goals · 20% invest</p>
+                      </div>
+                      <div class="w-16 h-16 rounded-xl bg-[#1BAFBF] text-white flex items-center justify-center shadow-md">⭐</div>
+                    </div>
+                    <div class="mt-5">
+                      <div class="h-3 rounded-full overflow-hidden bg-white ring-1 ring-black/5">
+                        <div class="h-full bg-[#132238]" style="width:60%"></div>
+                      </div>
+                      <div class="h-3 rounded-full overflow-hidden bg-white ring-1 ring-black/5 mt-2">
+                        <div class="h-full bg-[#FF6A3D]" style="width:20%"></div>
+                      </div>
+                      <div class="h-3 rounded-full overflow-hidden bg-white ring-1 ring-black/5 mt-2">
+                        <div class="h-full bg-[#1BAFBF]" style="width:20%"></div>
+                      </div>
+                    </div>
+                    <p class="text-xs muted mt-3">Adjustable inside the app with sliders and instant impact preview.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature blocks -->
+    <section id="features" class="relative py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="card">
+            <h3 class="font-heading text-xl">Incomes & Expense Tracking</h3>
+            <p class="muted mt-2">Multiple incomes per partner, fixed bills, and daily transactions with categories. Clear monthly totals and trends.</p>
+          </div>
+          <div class="card">
+            <h3 class="font-heading text-xl">Debt Overview</h3>
+            <p class="muted mt-2">See total owed, minimums, APRs, and a focused payoff order. Snowball and avalanche insights.</p>
+          </div>
+          <div class="card">
+            <h3 class="font-heading text-xl">Investments For the Family</h3>
+            <p class="muted mt-2">Stable suggestions: S&P ETFs, broad bond funds, and real estate ETFs. Track what you have already invested.</p>
+          </div>
+        </div>
+        <div class="grid gap-6 md:grid-cols-3 mt-6">
+          <div class="card">
+            <h3 class="font-heading text-xl">Bookkeeping Basics</h3>
+            <p class="muted mt-2">Simple, friendly lessons that make record-keeping effortless for the household.</p>
+          </div>
+          <div class="card">
+            <h3 class="font-heading text-xl">Kids' Money Learning</h3>
+            <p class="muted mt-2">Short, age-appropriate modules and activities to build healthy habits early.</p>
+          </div>
+          <div class="card">
+            <h3 class="font-heading text-xl">Private & Local</h3>
+            <p class="muted mt-2">Your data stays in your browser's storage, so your planning remains personal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education and Investing -->
+    <section id="education" class="relative py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="rounded-3xl p-8 md:p-12 bg-white ring-1 ring-black/5 shadow-sm">
+          <div class="flex flex-col lg:flex-row gap-10 items-start">
+            <div class="flex-1">
+              <h3 class="font-heading text-3xl">Make bookkeeping second nature</h3>
+              <p class="muted mt-3">Mini-lessons for parents and activities for kids turn finance into a family skill. Track progress and celebrate small wins.</p>
+              <a href="app.html#learning" class="btn-secondary mt-6">Browse lessons</a>
+            </div>
+            <div class="flex-1">
+              <div class="grid grid-cols-2 gap-4 w-full">
+                <div class="p-5 rounded-2xl bg-[#F8FAFF] ring-1 ring-black/5">
+                  <p class="text-sm muted">For parents</p>
+                  <p class="font-heading text-xl mt-1">Simple records</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-[#E6FAFB] ring-1 ring-black/5">
+                  <p class="text-sm muted">For kids</p>
+                  <p class="font-heading text-xl mt-1">Fun challenges</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-white ring-1 ring-black/5">
+                  <p class="text-sm muted">Both</p>
+                  <p class="font-heading text-xl mt-1">Shared goals</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-white ring-1 ring-black/5">
+                  <p class="text-sm muted">Together</p>
+                  <p class="font-heading text-xl mt-1">Better habits</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="invest" class="relative py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="rounded-3xl p-8 md:p-12 bg-[#132238] text-white shadow-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 rotate-12 w-72 h-72 bg-[#1BAFBF]/20 rounded-3xl"></div>
+          <div class="relative z-10">
+            <h3 class="font-heading text-3xl">Invest with confidence</h3>
+            <p class="mt-3 text-white/80">Prefer stability? We highlight S&P funds, broad bond funds, and real estate ETFs. Add your picks and track them, month by month.</p>
+            <a href="app.html#investments" class="btn-primary mt-6">See suggestions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.svg" alt="NestFund logo" class="w-7 h-7">
+        <p class="text-sm muted">Built for families who plan together.</p>
+      </div>
+      <div class="text-sm muted">© <span id="year"></span> NestFund</div>
+    </div>
+  </footer>
+
+  <script>
+    // Small non-invasive enhancement
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

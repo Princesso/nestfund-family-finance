@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NestFund App</title>
+  <meta name="description" content="Manage family finances: incomes, expenses, debts, investments, learning for parents and kids.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+</head>
+<body class="bg-[#F8FAFF] text-[#132238] min-h-screen antialiased">
+  <header class="sticky top-0 z-50 bg-[#F8FAFF]/90 backdrop-blur">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logo.svg" alt="NestFund logo" class="w-8 h-8">
+        <span class="font-heading font-bold text-lg">NestFund</span>
+      </a>
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <button class="tab-btn btn-secondary" data-tab="dashboard">Dashboard</button>
+        <button class="tab-btn btn-secondary" data-tab="incomes">Incomes</button>
+        <button class="tab-btn btn-secondary" data-tab="expenses">Expenses</button>
+        <button class="tab-btn btn-secondary" data-tab="debts">Debts</button>
+        <button class="tab-btn btn-secondary" data-tab="investments">Investments</button>
+        <button class="tab-btn btn-secondary" data-tab="learning">Learning</button>
+        <button class="tab-btn btn-secondary" data-tab="kids">Kids</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 pb-24 pt-6">
+    <section id="dashboard" class="tab-panel">
+      <div class="grid gap-6 lg:grid-cols-3">
+        <div class="lg:col-span-2 bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+              <h2 class="font-heading text-2xl">Monthly Planner</h2>
+              <p class="muted mt-1">Choose a month and set your plan. We calculate the rest.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <input id="planMonth" type="month" class="input" aria-label="Select month" />
+              <select id="riskLevel" class="input" aria-label="Risk preference">
+                <option value="conservative">Conservative</option>
+                <option value="moderate" selected>Moderate</option>
+                <option value="growth">Growth</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4 mt-6">
+            <div class="p-4 rounded-xl bg-[#E6FAFB] ring-1 ring-black/5">
+              <p class="text-xs muted">Income</p>
+              <p class="font-heading text-2xl" id="dashIncome">$0</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white ring-1 ring-black/5">
+              <p class="text-xs muted">Fixed + Variable</p>
+              <p class="font-heading text-2xl" id="dashExpenses">$0</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white ring-1 ring-black/5">
+              <p class="text-xs muted">Debt Minimums</p>
+              <p class="font-heading text-2xl" id="dashDebtMins">$0</p>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <div class="flex items-center justify-between">
+              <p class="font-medium">Savings target: <span id="savingsTargetLabel">$0</span></p>
+              <input id="savingsTarget" type="range" min="0" max="5000" step="50" class="w-48" />
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <p class="font-medium">Investment target: <span id="investTargetLabel">$0</span></p>
+              <input id="investTarget" type="range" min="0" max="5000" step="50" class="w-48" />
+            </div>
+            <p class="mt-4 text-sm muted">Left after plan: <span id="planRemainder" class="font-semibold text-[#132238]"></span></p>
+          </div>
+
+          <div class="mt-6 grid md:grid-cols-3 gap-4">
+            <div class="card">
+              <p class="text-sm muted">Suggested S&P allocation</p>
+              <p class="font-heading text-xl mt-1" id="suggSP">$0</p>
+              <p class="text-xs muted">Examples: VOO, IVV, SPY</p>
+            </div>
+            <div class="card">
+              <p class="text-sm muted">Suggested Real Estate allocation</p>
+              <p class="font-heading text-xl mt-1" id="suggRE">$0</p>
+              <p class="text-xs muted">Examples: VNQ, SCHH</p>
+            </div>
+            <div class="card">
+              <p class="text-sm muted">Suggested Stable allocation</p>
+              <p class="font-heading text-xl mt-1" id="suggStable">$0</p>
+              <p class="text-xs muted">Examples: BND, I-Bonds</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+          <h3 class="font-heading text-xl">Snapshot</h3>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li class="flex items-center justify-between"><span class="muted">Total owed</span><span id="snapOwed" class="font-medium">$0</span></li>
+            <li class="flex items-center justify-between"><span class="muted">Investments logged</span><span id="snapInvests" class="font-medium">0</span></li>
+            <li class="flex items-center justify-between"><span class="muted">Lessons completed</span><span id="snapLessons" class="font-medium">0</span></li>
+          </ul>
+          <a href="#investments" class="btn-primary mt-6 w-full text-center block">Log an Investment</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="incomes" class="tab-panel hidden">
+      <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <h2 class="font-heading text-2xl">Incomes</h2>
+            <p class="muted mt-1">Add all streams for each partner.</p>
+          </div>
+          <form id="incomeForm" class="flex flex-wrap gap-3 items-end">
+            <div>
+              <label class="form-label">Partner</label>
+              <select class="input" id="incomePartner"><option>Partner A</option><option>Partner B</option></select>
+            </div>
+            <div>
+              <label class="form-label">Label</label>
+              <input class="input" id="incomeLabel" placeholder="e.g., Salary" required />
+            </div>
+            <div>
+              <label class="form-label">Amount (monthly)</label>
+              <input class="input" id="incomeAmount" type="number" min="0" step="0.01" required />
+            </div>
+            <button class="btn-primary" type="submit">Add income</button>
+          </form>
+        </div>
+
+        <div class="mt-4 rounded-xl bg-[#F8FAFF] ring-1 ring-black/5 p-4">
+          <h3 class="font-heading text-lg">Partners</h3>
+          <form id="partnerNamesForm" class="mt-3 grid sm:grid-cols-3 gap-3 items-end">
+            <div>
+              <label class="form-label">Partner 1 name</label>
+              <input id="partnerAName" class="input" placeholder="Partner A" />
+            </div>
+            <div>
+              <label class="form-label">Partner 2 name</label>
+              <input id="partnerBName" class="input" placeholder="Partner B" />
+            </div>
+            <button class="btn-primary" type="submit">Save names</button>
+          </form>
+        </div>
+
+        <div class="table-wrap mt-6">
+          <table class="data-table">
+            <thead>
+              <tr><th>Partner</th><th>Label</th><th class="text-right">Amount</th><th></th></tr>
+            </thead>
+            <tbody id="incomeRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="expenses" class="tab-panel hidden">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+          <h2 class="font-heading text-2xl">Fixed bills</h2>
+          <form id="fixedForm" class="mt-4 grid md:grid-cols-4 gap-3 items-end">
+            <div class="md:col-span-2">
+              <label class="form-label">Label</label>
+              <input class="input" id="fixedLabel" placeholder="e.g., Rent" required />
+            </div>
+            <div>
+              <label class="form-label">Amount (monthly)</label>
+              <input class="input" id="fixedAmount" type="number" min="0" step="0.01" required />
+            </div>
+            <button class="btn-primary" type="submit">Add</button>
+          </form>
+          <div class="table-wrap mt-4">
+            <table class="data-table">
+              <thead><tr><th>Label</th><th class="text-right">Amount</th><th></th></tr></thead>
+              <tbody id="fixedRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+          <h2 class="font-heading text-2xl">Variable spending</h2>
+          <form id="variableForm" class="mt-4 grid md:grid-cols-5 gap-3 items-end">
+            <div class="md:col-span-2">
+              <label class="form-label">Label</label>
+              <input class="input" id="varLabel" placeholder="e.g., Groceries" required />
+            </div>
+            <div>
+              <label class="form-label">Category</label>
+              <select class="input" id="varCategory"></select>
+            </div>
+            <div>
+              <label class="form-label">Date</label>
+              <input class="input" id="varDate" type="date" required />
+            </div>
+            <div>
+              <label class="form-label">Amount</label>
+              <input class="input" id="varAmount" type="number" min="0" step="0.01" required />
+            </div>
+            <button class="btn-primary" type="submit">Add</button>
+          </form>
+          <div class="table-wrap mt-4">
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Label</th><th>Category</th><th class="text-right">Amount</th><th></th></tr></thead>
+              <tbody id="varRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="debts" class="tab-panel hidden">
+      <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <h2 class="font-heading text-2xl">Debts</h2>
+            <p class="muted mt-1">Track balances, APRs, and minimums.</p>
+          </div>
+          <form id="debtForm" class="flex flex-wrap gap-3 items-end">
+            <div>
+              <label class="form-label">Creditor</label>
+              <input class="input" id="debtCreditor" placeholder="e.g., Visa" required />
+            </div>
+            <div>
+              <label class="form-label">Balance</label>
+              <input class="input" id="debtBalance" type="number" min="0" step="0.01" required />
+            </div>
+            <div>
+              <label class="form-label">APR %</label>
+              <input class="input" id="debtAPR" type="number" min="0" step="0.01" required />
+            </div>
+            <div>
+              <label class="form-label">Min payment</label>
+              <input class="input" id="debtMin" type="number" min="0" step="0.01" required />
+            </div>
+            <button class="btn-primary" type="submit">Add debt</button>
+          </form>
+        </div>
+        <div class="table-wrap mt-6">
+          <table class="data-table">
+            <thead><tr><th>Creditor</th><th class="text-right">Balance</th><th class="text-right">APR</th><th class="text-right">Min</th><th class="text-right">Priority</th><th></th></tr></thead>
+            <tbody id="debtRows"></tbody>
+          </table>
+        </div>
+        <div class="mt-4 grid sm:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-[#E6FAFB] ring-1 ring-black/5"><p class="text-xs muted">Total owed</p><p id="debtTotal" class="font-heading text-xl">$0</p></div>
+          <div class="p-4 rounded-xl bg-white ring-1 ring-black/5"><p class="text-xs muted">Weighted APR</p><p id="debtWAPR" class="font-heading text-xl">0%</p></div>
+          <div class="p-4 rounded-xl bg-white ring-1 ring-black/5"><p class="text-xs muted">Monthly minimum</p><p id="debtMinTotal" class="font-heading text-xl">$0</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="investments" class="tab-panel hidden">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+          <h2 class="font-heading text-2xl">Suggestions</h2>
+          <p class="muted mt-1">Stable options aligned with your risk preference.</p>
+          <div id="suggList" class="mt-4 space-y-3"></div>
+        </div>
+        <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-heading text-2xl">Your investments</h2>
+              <p class="muted mt-1">Log what you have already invested.</p>
+            </div>
+            <button id="addInvestBtn" class="btn-primary">Add Investment</button>
+          </div>
+          <form id="investForm" class="mt-4 grid md:grid-cols-5 gap-3 items-end hidden">
+            <div class="md:col-span-2">
+              <label class="form-label">Name</label>
+              <input class="input" id="invName" placeholder="e.g., VOO" required />
+            </div>
+            <div>
+              <label class="form-label">Type</label>
+              <select class="input" id="invType"><option>S&P ETF</option><option>Real Estate ETF</option><option>Bond Fund</option><option>529 Plan</option><option>Custodial</option></select>
+            </div>
+            <div>
+              <label class="form-label">Date</label>
+              <input class="input" id="invDate" type="date" required />
+            </div>
+            <div>
+              <label class="form-label">Amount</label>
+              <input class="input" id="invAmount" type="number" min="0" step="0.01" required />
+            </div>
+            <button class="btn-primary" type="submit">Save</button>
+          </form>
+          <div class="table-wrap mt-4">
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Name</th><th>Type</th><th class="text-right">Amount</th><th></th></tr></thead>
+              <tbody id="invRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning" class="tab-panel hidden">
+      <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+        <h2 class="font-heading text-2xl">Bookkeeping & Finance Lessons</h2>
+        <p class="muted mt-1">Short reads for parents with practical actions.</p>
+
+        <div class="flex items-center justify-between mt-4">
+          <p class="text-sm muted">Add links to videos or courses you want to study.</p>
+          <button id="learnAddBtn" class="btn-primary">Add Material</button>
+        </div>
+        <form id="learnForm" class="mt-4 grid md:grid-cols-5 gap-3 items-end hidden">
+          <div class="md:col-span-2">
+            <label class="form-label">Title</label>
+            <input id="learnTitle" class="input" placeholder="e.g., Intro to Budgeting" required />
+          </div>
+          <div>
+            <label class="form-label">Type</label>
+            <select id="learnType" class="input"><option>Video</option><option>Course</option><option>Article</option></select>
+
+        <div class="mt-4 rounded-xl bg-[#F8FAFF] ring-1 ring-black/5 p-4">
+          <h3 class="font-heading text-lg">Kids</h3>
+          <form id="kidForm" class="mt-3 grid sm:grid-cols-3 gap-3 items-end">
+            <div class="sm:col-span-2">
+              <label class="form-label">Kid's name</label>
+              <input id="kidName" class="input" placeholder="e.g., Alex" required />
+            </div>
+            <button class="btn-primary" type="submit">Add kid</button>
+          </form>
+          <div class="table-wrap mt-4">
+            <table class="data-table">
+              <thead><tr><th>Name</th><th></th></tr></thead>
+              <tbody id="kidsNamesRows"></tbody>
+            </table>
+          </div>
+        </div>
+          </div>
+          <div>
+            <label class="form-label">URL</label>
+            <input id="learnUrl" type="url" class="input" placeholder="https://..." required />
+          </div>
+          <button class="btn-primary" type="submit">Save</button>
+        </form>
+        <div id="lessonList" class="mt-4 grid md:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <section id="kids" class="tab-panel hidden">
+      <div class="bg-white rounded-2xl ring-1 ring-black/5 shadow-sm p-6">
+        <h2 class="font-heading text-2xl">Kids' Money Lab</h2>
+        <p class="muted mt-1">Tiny missions to build money sense.</p>
+        <div id="kidsList" class="mt-4 grid md:grid-cols-2 gap-4"></div>
+        <div class="flex items-center justify-between mt-4">
+          <p class="text-sm muted">Add videos or activities for kids.</p>
+          <button id="kidsLearnAddBtn" class="btn-primary">Add Kids Material</button>
+        </div>
+        <form id="kidsLearnForm" class="mt-4 grid md:grid-cols-5 gap-3 items-end hidden">
+          <div class="md:col-span-2">
+            <label class="form-label">Title</label>
+            <input id="kidsLearnTitle" class="input" placeholder="e.g., Save, Spend, Share" required />
+          </div>
+          <div>
+            <label class="form-label">Type</label>
+            <select id="kidsLearnType" class="input"><option>Video</option><option>Course</option><option>Activity</option></select>
+          </div>
+          <div>
+            <label class="form-label">URL</label>
+            <input id="kidsLearnUrl" type="url" class="input" placeholder="https://..." required />
+          </div>
+          <button class="btn-primary" type="submit">Save</button>
+        </form>
+        <div class="mt-6 rounded-2xl ring-1 ring-black/5 p-5 bg-[#F8FAFF]">
+          <h3 class="font-heading text-xl">Monthly plan for kids</h3>
+          <p class="muted mt-1">We suggest simple recurring investments for your children.</p>
+          <div class="grid sm:grid-cols-3 gap-3 mt-3">
+            <div class="p-4 bg-white rounded-xl ring-1 ring-black/5"><p class="text-xs muted">529 Plan</p><p class="font-heading text-lg" id="kids529">$0</p></div>
+            <div class="p-4 bg-white rounded-xl ring-1 ring-black/5"><p class="text-xs muted">Custodial</p><p class="font-heading text-lg" id="kidsCust">$0</p></div>
+            <div class="p-4 bg-white rounded-xl ring-1 ring-black/5"><p class="text-xs muted">Savings</p><p class="font-heading text-lg" id="kidsSave">$0</p></div>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-white rounded-2xl ring-1 ring-black/5 p-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-heading text-xl">Kids' Investments</h3>
+              <p class="muted mt-1">Log investments made for your children.</p>
+            </div>
+            <button id="kidsAddInvestBtn" class="btn-primary">Add Kids Investment</button>
+          </div>
+          <form id="kidsInvestForm" class="mt-4 grid md:grid-cols-6 gap-3 items-end hidden">
+            <div class="md:col-span-2">
+              <label class="form-label">Name</label>
+              <input id="kidsInvName" class="input" placeholder="e.g., 529 Plan - NY" required />
+            </div>
+            <div>
+              <label class="form-label">Type</label>
+              <select id="kidsInvType" class="input"><option>529 Plan</option><option>Custodial</option><option>Savings</option></select>
+            </div>
+            <div>
+              <label class="form-label">Date</label>
+              <input id="kidsInvDate" type="date" class="input" required />
+            </div>
+            <div>
+              <label class="form-label">Amount</label>
+              <input id="kidsInvAmount" type="number" min="0" step="0.01" class="input" required />
+            </div>
+            <button class="btn-primary" type="submit">Save</button>
+          </form>
+          <div class="table-wrap mt-4">
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Name</th><th>Type</th><th class="text-right">Amount</th><th></th></tr></thead>
+              <tbody id="kidsInvRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm muted">Your data is stored locally in your browser.</p>
+      <a href="index.html" class="btn-secondary">Back to Site</a>
+    </div>
+  </footer>
+
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center justify-center whitespace-nowrap bg-[#FF6A3D] text-white px-5 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-[#f35f32] active:bg-[#e25429] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#FF6A3D]; }
+      .btn-secondary { @apply inline-flex items-center justify-center whitespace-nowrap bg-white text-[#132238] px-5 py-3 rounded-full font-medium ring-1 ring-black/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1BAFBF]; }
+      .input { @apply w-full bg-white text-[#132238] px-3 py-2 rounded-lg ring-1 ring-black/5 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1BAFBF] transition-all duration-300; }
+      .form-label { @apply block text-xs font-medium text-[#132238]/70 mb-1; }
+      .table-wrap { @apply w-full overflow-x-auto rounded-xl ring-1 ring-black/5 bg-white; }
+      .data-table { @apply w-full text-sm; }
+      .data-table thead tr { @apply bg-[#F8FAFF]; }
+      .data-table th, .data-table td { @apply whitespace-nowrap text-left px-4 py-3; }
+      .data-table tbody tr { @apply border-t border-black/5; }
+      .tab-panel { @apply mt-4; }
+    }
+  </style>
+
+  <!-- Required script order -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* Fonts */
+:root{
+  --c-bg:#F8FAFF; --c-ink:#132238; --c-accent:#1BAFBF; --c-cta:#FF6A3D;
+}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+.font-heading{font-family:"Space Grotesk",Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+
+/* Hero angled backgrounds */
+.skew-hero{position:absolute; inset:0; transform:skewY(-6deg); transform-origin:top left;}
+.skew-accent{position:absolute; inset:0; transform:skewY(-12deg) translateY(40%); transform-origin:top left;}
+
+/* Showcase tilt */
+.showcase-tilt{transform:rotate(-1.2deg);}
+.showcase-tilt:hover{transform:rotate(0deg); transition:transform .4s ease}
+
+/* No scrollbar for nav strip */
+.no-scrollbar{scrollbar-width:none}
+.no-scrollbar::-webkit-scrollbar{display:none}
+
+/* Micro animations */
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+@keyframes fadeInUp{0%{opacity:0; transform:translateY(8px)}100%{opacity:1; transform:translateY(0)}}
+.card{animation:fadeInUp .6s ease both}
+
+/* Accessibility: focus states if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .showcase-tilt, .card{animation:none}
+  *{transition:none!important}
+}
+
+/* Ensure buttons are above overlapping elements */
+button, .btn-primary, .btn-secondary{position:relative; z-index:10}
+
+/* Data table tweaks for mobile */
+.data-table th, .data-table td{max-width:320px; text-overflow:ellipsis; overflow:hidden}
+
+/* Utility */
+.muted{color:rgba(19,34,56,0.72)}
+
+/* Footer subtle divider */
+footer{border-top:1px solid rgba(0,0,0,.05)}
