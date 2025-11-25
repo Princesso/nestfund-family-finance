@@ -1,6 +1,6 @@
 # NestFund Family Finance
 
-NestFund is a beautiful, privacy-first web app to help partners manage incomes, expenses, debts, and investments together. It also includes friendly bookkeeping lessons for parents and kid-focused money activities.
+NestFund is a beautiful, privacy-first web app to help partners manage incomes, expenses, debts, and investments together. Built by [Teda.dev](https://teda.dev), the AI app builder for everyday problems, it also includes friendly bookkeeping lessons for parents and kid-focused money activities.
 
 ## Features
 - Track multiple incomes for each partner

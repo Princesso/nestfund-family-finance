@@ -136,12 +136,12 @@
     const risk = $('#riskLevel').val() || 'moderate';
     const suggestions = suggestionsFor(risk);
     const list = suggestions.map(s=>`
-      <div class="p-4 rounded-xl bg-white ring-1 ring-black/5 flex items-start justify-between">
-        <div>
-          <p class="font-medium">${s.name} <span class="text-xs muted">(${s.type})</span></p>
-          <p class="text-sm muted mt-1">${s.desc || ''}</p>
+      <div class="p-4 rounded-xl bg-white ring-1 ring-black/5 flex items-center justify-between gap-4">
+        <div class="flex-1 min-w-0">
+          <p class="font-medium truncate">${s.name} <span class="text-xs muted">(${s.type})</span></p>
+          <p class="text-sm muted mt-1 truncate">${s.desc || ''}</p>
         </div>
-        <button class="btn-secondary quick-add" data-name="${s.name}" data-type="${s.type}">Quick add</button>
+        <button class="btn-secondary btn-sm quick-add flex-shrink-0" data-name="${s.name}" data-type="${s.type}">Quick add</button>
       </div>
     `);
     $('#suggList').html(list.join(''));

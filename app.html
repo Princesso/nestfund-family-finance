@@ -13,12 +13,12 @@
 </head>
 <body class="bg-[#F8FAFF] text-[#132238] min-h-screen antialiased">
   <header class="sticky top-0 z-50 bg-[#F8FAFF]/90 backdrop-blur">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex-shrink-0 flex items-center gap-3">
         <img src="assets/logo.svg" alt="NestFund logo" class="w-8 h-8">
-        <span class="font-heading font-bold text-lg">NestFund</span>
+        <span class="font-heading font-bold text-lg hidden sm:inline">NestFund</span>
       </a>
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <div class="flex-1 min-w-0 flex items-center justify-end gap-2 overflow-x-auto no-scrollbar">
         <button class="tab-btn btn-secondary" data-tab="dashboard">Dashboard</button>
         <button class="tab-btn btn-secondary" data-tab="incomes">Incomes</button>
         <button class="tab-btn btn-secondary" data-tab="expenses">Expenses</button>
@@ -39,9 +39,9 @@
               <h2 class="font-heading text-2xl">Monthly Planner</h2>
               <p class="muted mt-1">Choose a month and set your plan. We calculate the rest.</p>
             </div>
-            <div class="flex items-center gap-3">
-              <input id="planMonth" type="month" class="input" aria-label="Select month" />
-              <select id="riskLevel" class="input" aria-label="Risk preference">
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+              <input id="planMonth" type="month" class="input sm:w-auto" aria-label="Select month" />
+              <select id="riskLevel" class="input sm:w-auto" aria-label="Risk preference">
                 <option value="conservative">Conservative</option>
                 <option value="moderate" selected>Moderate</option>
                 <option value="growth">Growth</option>
@@ -65,13 +65,13 @@
           </div>
 
           <div class="mt-6">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <p class="font-medium">Savings target: <span id="savingsTargetLabel">$0</span></p>
-              <input id="savingsTarget" type="range" min="0" max="5000" step="50" class="w-48" />
+              <input id="savingsTarget" type="range" min="0" max="5000" step="50" class="w-full sm:w-48" />
             </div>
-            <div class="flex items-center justify-between mt-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-3">
               <p class="font-medium">Investment target: <span id="investTargetLabel">$0</span></p>
-              <input id="investTarget" type="range" min="0" max="5000" step="50" class="w-48" />
+              <input id="investTarget" type="range" min="0" max="5000" step="50" class="w-full sm:w-48" />
             </div>
             <p class="mt-4 text-sm muted">Left after plan: <span id="planRemainder" class="font-semibold text-[#132238]"></span></p>
           </div>
@@ -424,6 +424,7 @@
     @layer components {
       .btn-primary { @apply inline-flex items-center justify-center whitespace-nowrap bg-[#FF6A3D] text-white px-5 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-[#f35f32] active:bg-[#e25429] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#FF6A3D]; }
       .btn-secondary { @apply inline-flex items-center justify-center whitespace-nowrap bg-white text-[#132238] px-5 py-3 rounded-full font-medium ring-1 ring-black/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1BAFBF]; }
+      .btn-sm { @apply px-3 py-1.5 text-xs h-8; }
       .input { @apply w-full bg-white text-[#132238] px-3 py-2 rounded-lg ring-1 ring-black/5 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1BAFBF] transition-all duration-300; }
       .form-label { @apply block text-xs font-medium text-[#132238]/70 mb-1; }
       .table-wrap { @apply w-full overflow-x-auto rounded-xl ring-1 ring-black/5 bg-white; }
